@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-head-element */
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import "@/styles/globals.css"
 import { Metadata } from "next"
 
