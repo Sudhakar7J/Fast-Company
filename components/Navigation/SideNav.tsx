@@ -26,7 +26,7 @@ export function SideNav() {
       </SheetTrigger>
       <SheetContent
         position="left"
-        size={1}
+        size="sm lg:full"
         className="left-0 overflow-y-auto"
         style={{ maxHeight: "100vh" }}
       >

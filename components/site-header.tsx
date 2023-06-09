@@ -12,19 +12,19 @@ export function SiteHeader() {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <header
-      className="sticky top-0 z-40 border-b bg-black bg-opacity-40"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <header className="sticky top-0 z-40 border-b bg-black bg-opacity-40">
       <div className="flex h-16 w-max">
         <MainNav />
       </div>
-      {isHovered && (
-        <header className="sticky top-0 z-40 h-6 border-b bg-black ">
-          <HoverSideNav />
-        </header>
-      )}
+      <header
+        className={`sticky top-0 z-40 h-6 w-full border-b bg-black ${
+          isHovered ? "" : "hidden"
+        } lg:inline-block`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <HoverSideNav />
+      </header>
     </header>
   )
 }
