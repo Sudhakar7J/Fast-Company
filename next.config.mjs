@@ -10,6 +10,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "upload.wikimedia.org",
       },
+      {
+        protocol: "https",
+        hostname: "www.pngkey.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.pngkit.com",
+      },
     ],
   },
   reactStrictMode: true,

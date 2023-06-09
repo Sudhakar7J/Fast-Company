@@ -21,8 +21,8 @@ export function SiteHeader() {
         <MainNav />
       </div>
       {isHovered && (
-        <header className="sticky top-0 z-40 border-b bg-black bg-opacity-40">
-          <div className="flex h-4 w-max">{/* <HoverSideNav /> */}</div>
+        <header className="sticky top-0 z-40 h-6 border-b bg-black ">
+          <HoverSideNav />
         </header>
       )}
     </header>

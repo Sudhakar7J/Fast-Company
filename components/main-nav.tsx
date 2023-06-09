@@ -16,6 +16,7 @@ export function MainNav() {
           alt="Logo"
           width={120}
           height={28}
+          className="items-center justify-end"
         />
       </div>
     </div>
