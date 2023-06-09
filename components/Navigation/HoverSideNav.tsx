@@ -3,14 +3,14 @@ import { SideNavConfig } from "@/mockdataconfigs/SideNavConfig"
 import uppercaseNavItem from "@/utils/helpers/uppercaseNavItem"
 
 export function HoverSideNav() {
-  const [selectedNavItem, setSelectedNavItem] = useState("Premium")
+  const [selectedNavItem, setSelectedNavItem] = useState("")
 
   const filteredSections = SideNavConfig.sections.filter(
     (section) => section.name === "suits"
   )
 
   return (
-    <div className="flex items-center justify-around px-40">
+    <div className="flex cursor-pointer items-center justify-around px-40">
       {filteredSections.map((section) => (
         <React.Fragment key={section.name}>
           {section.items.map((navItem) => (
@@ -23,7 +23,7 @@ export function HoverSideNav() {
                 }`}
                 onClick={() => setSelectedNavItem(navItem.name)}
               >
-                <span className="hover-name cursor-pointer border-slate-300 text-white group-hover:border-b-4">
+                <span className=" cursor-pointer border-b-4 border-slate-300 border-opacity-0 text-white group-hover:border-b-4 group-hover:border-opacity-100">
                   {uppercaseNavItem(navItem).name}
                 </span>
               </span>

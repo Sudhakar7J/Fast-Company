@@ -12,11 +12,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "www.pngkey.com",
+        hostname: "images.fastcompany.net",
       },
       {
         protocol: "https",
-        hostname: "www.pngkit.com",
+        hostname: "images.unsplash.com",
       },
     ],
   },

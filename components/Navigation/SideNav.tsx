@@ -35,17 +35,17 @@ export function SideNav() {
             {section.items.map((navItem) => (
               <div
                 key={navItem.name}
-                className={`my-3 flex items-center p-2 ${
+                className={`my-3 flex cursor-pointer items-center p-2${
                   navItem.name === "Login" ? "font-bold" : ""
                 }`}
               >
                 {" "}
-                {navItem.icon && <navItem.icon />}
+                {navItem.icon && <navItem.icon size={14} />}
                 {uppercaseNavItem(navItem).name}
               </div>
             ))}
             {sectionIndex < SideNavConfig.sections.length - 1 && (
-              <Separator className="border-1 border-black" />
+              <Separator className="bg-gray-900" />
             )}
           </div>
         ))}

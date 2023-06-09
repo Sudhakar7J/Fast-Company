@@ -3,6 +3,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { AnimatePresence, motion } from "framer-motion"
 
 import { MainNav } from "@/components/main-nav"
 
@@ -12,19 +13,35 @@ export function SiteHeader() {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-black bg-opacity-40">
-      <div className="flex h-16 w-max">
-        <MainNav />
-      </div>
-      <header
-        className={`sticky top-0 z-40 h-6 w-full border-b bg-black ${
-          isHovered ? "" : "hidden"
-        } lg:inline-block`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <HoverSideNav />
+    <>
+      <header className="fixed top-0 z-40 w-full ">
+        <div
+          className="flex h-16 max-w-full items-center bg-black bg-opacity-40"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <MainNav />
+        </div>
+        <div className="hidden lg:block">
+          <AnimatePresence>
+            {isHovered && (
+              <motion.header
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: 1, scaleY: 1, originY: 0 }}
+                exit={{
+                  opacity: 0,
+                  scaleY: 0,
+                  originY: 0,
+                  transition: { delay: 4 },
+                }}
+                className="w-full border-b bg-black "
+              >
+                <HoverSideNav />
+              </motion.header>
+            )}
+          </AnimatePresence>
+        </div>
       </header>
-    </header>
+    </>
   )
 }
