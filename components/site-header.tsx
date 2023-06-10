@@ -32,9 +32,9 @@ export function SiteHeader() {
                   opacity: 0,
                   scaleY: 0,
                   originY: 0,
-                  transition: { delay: 4 },
+                  transition: { delay: 200 },
                 }}
-                className="w-full border-b bg-black "
+                className="w-full bg-black "
               >
                 <HoverSideNav />
               </motion.header>

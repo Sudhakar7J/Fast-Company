@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import React, { useState } from "react"
 import { SideNavConfig } from "@/mockdataconfigs/SideNavConfig"
 import uppercaseNavItem from "@/utils/helpers/uppercaseNavItem"
