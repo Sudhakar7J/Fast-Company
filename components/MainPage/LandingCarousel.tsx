@@ -2,17 +2,22 @@
 
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { MockCarouselData } from "@/mockdataconfigs/MockCarouselData"
 import { motion } from "framer-motion"
+import { CldImage } from "next-cloudinary"
 
 import { useScreenSize } from "@/hooks/useScreenSize"
 
 import { CarouselItem } from "./CarouselItem"
 import { SponsoredCarouselItem } from "./SponsoredCarouselItem"
 
-export function LandingCarousel() {
+export function LandingCarousel({ articles, paginationData }: any) {
   const { isMobileScreen } = useScreenSize()
   const [highlightedArticle, setHighlightedArticle] = useState(1)
+  const [allArticles, setAllArticles] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize, setPageSize] = useState(2)
 
   const onHighlightArticle = (id: React.SetStateAction<number>) => {
     if (isMobileScreen) {
@@ -56,8 +61,25 @@ export function LandingCarousel() {
         </motion.div>
       )}
       <div className="flex cursor-pointer flex-col md:grid md:grid-cols-4 md:gap-4">
-        {MockCarouselData.map(
-          ({ title, id, imageUrl, category, isSponsoredArticle }) =>
+        {articles.map(
+          ({
+            id,
+            attributes: {
+              title,
+              category,
+              description,
+              imageUrl: {
+                data: {
+                  attributes: {
+                    formats: {
+                      small: { url },
+                    },
+                  },
+                },
+              },
+              isSponsoredArticle,
+            },
+          }) =>
             isSponsoredArticle ? (
               <SponsoredCarouselItem
                 key={id}
@@ -65,8 +87,8 @@ export function LandingCarousel() {
                   id,
                   title,
                   category,
-                  imageUrl,
                 }}
+                imageUrl={url}
               />
             ) : (
               <CarouselItem
@@ -75,12 +97,26 @@ export function LandingCarousel() {
                   id,
                   title,
                   category,
-                  imageUrl,
+
                   onHighlightArticle,
                   highlightedArticle,
                 }}
+                imageUrl={url}
               />
             )
+        )}
+      </div>
+      <div className="mt-4 flex justify-center">
+        {paginationData?.pagination?.page <
+          paginationData?.pagination?.pageCount && (
+          <Link href={`/?page=${paginationData?.pagination?.page + 1}`}>
+            Next
+          </Link>
+        )}
+        {paginationData?.pagination?.page > 1 && (
+          <Link href={`/?page=${paginationData?.pagination?.page - 1}`}>
+            Previous
+          </Link>
         )}
       </div>
     </div>

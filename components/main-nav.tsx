@@ -2,6 +2,7 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Search } from "lucide-react"
+import { CldImage } from "next-cloudinary"
 
 import { SideNav } from "./Navigation/SideNav"
 

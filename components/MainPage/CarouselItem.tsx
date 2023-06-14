@@ -38,7 +38,7 @@ export function CarouselItem({
         className="flex p-4 md:border-t-8"
         onMouseEnter={() => onHighlightArticle(id)}
       >
-        <div className="flex w-2/3 grow flex-col md:w-max">
+        <div className="flex w-2/3 grow flex-col pr-6 md:w-max md:pr-0">
           <div className="font-bold uppercase text-gray-700">{category}</div>
           <div className="flex text-lg font-bold leading-5 md:text-2xl md:leading-none">
             {title}
@@ -46,7 +46,12 @@ export function CarouselItem({
         </div>
         <div className="relative my-auto w-1/3">
           <div className="relative items-center justify-center md:hidden ">
-            <Image src={imageUrl} alt={title} width={1000} height={200} />
+            <Image
+              src={imageUrl}
+              alt="carousel-item"
+              width={1000}
+              height={200}
+            />
           </div>
         </div>
       </motion.div>

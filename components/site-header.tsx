@@ -32,7 +32,7 @@ export function SiteHeader() {
                   opacity: 0,
                   scaleY: 0,
                   originY: 0,
-                  transition: { delay: 200 },
+                  transition: { delay: 4 },
                 }}
                 className="w-full bg-black "
               >
