@@ -5,14 +5,48 @@ import Image from "next/image"
 import Link from "next/link"
 import { MockCarouselData } from "@/mockdataconfigs/MockCarouselData"
 import { motion } from "framer-motion"
-import { CldImage } from "next-cloudinary"
 
 import { useScreenSize } from "@/hooks/useScreenSize"
 
 import { CarouselItem } from "./CarouselItem"
 import { SponsoredCarouselItem } from "./SponsoredCarouselItem"
 
-export function LandingCarousel({ articles, paginationData }: any) {
+interface Article {
+  id: number
+  attributes: {
+    title: string
+    category: string
+    description: string
+    imageUrl: {
+      data: {
+        attributes: {
+          formats: {
+            small: {
+              url: string
+            }
+          }
+        }
+      }
+    }
+    isSponsoredArticle: boolean
+  }
+}
+
+interface PaginationData {
+  pagination: {
+    page: number
+    pageCount: number
+  }
+}
+interface LandingCarouselProps {
+  articles: Article[]
+  paginationData: PaginationData
+}
+
+export function LandingCarousel({
+  articles,
+  paginationData,
+}: LandingCarouselProps) {
   const { isMobileScreen } = useScreenSize()
   const [highlightedArticle, setHighlightedArticle] = useState(1)
   const [allArticles, setAllArticles] = useState([])
@@ -91,18 +125,18 @@ export function LandingCarousel({ articles, paginationData }: any) {
                 imageUrl={url}
               />
             ) : (
-              <CarouselItem
-                key={id}
-                {...{
-                  id,
-                  title,
-                  category,
-
-                  onHighlightArticle,
-                  highlightedArticle,
-                }}
-                imageUrl={url}
-              />
+              <Link key={id} href={`/article/${id}`}>
+                <CarouselItem
+                  {...{
+                    id,
+                    title,
+                    category,
+                    onHighlightArticle,
+                    highlightedArticle,
+                  }}
+                  imageUrl={url}
+                />
+              </Link>
             )
         )}
       </div>
