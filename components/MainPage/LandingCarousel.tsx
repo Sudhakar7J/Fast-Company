@@ -125,7 +125,7 @@ export function LandingCarousel({
                 imageUrl={url}
               />
             ) : (
-              <Link key={id} href={`/article/${id}`}>
+              <Link key={id} href={`/articlepage/`}>
                 <CarouselItem
                   {...{
                     id,

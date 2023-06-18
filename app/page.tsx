@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation"
+import { useQueryClient } from "react-query"
 
 import LandingCarousel from "@/components/MainPage/LandingCarousel"
 
