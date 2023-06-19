@@ -17,6 +17,7 @@ interface Article {
     title: string
     category: string
     description: string
+    slug: string
     imageUrl: {
       data: {
         attributes: {
@@ -49,9 +50,6 @@ export function LandingCarousel({
 }: LandingCarouselProps) {
   const { isMobileScreen } = useScreenSize()
   const [highlightedArticle, setHighlightedArticle] = useState(1)
-  const [allArticles, setAllArticles] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(2)
 
   const onHighlightArticle = (id: React.SetStateAction<number>) => {
     if (isMobileScreen) {
@@ -102,6 +100,7 @@ export function LandingCarousel({
               title,
               category,
               description,
+              slug,
               imageUrl: {
                 data: {
                   attributes: {
@@ -121,11 +120,12 @@ export function LandingCarousel({
                   id,
                   title,
                   category,
+                  slug,
                 }}
                 imageUrl={url}
               />
             ) : (
-              <Link key={id} href={`/articlepage/`}>
+              <Link key={id} href={`articles/${slug}`}>
                 <CarouselItem
                   {...{
                     id,
