@@ -35,22 +35,19 @@ interface ArticleContainerProps {
 export function ArticleContainer({
   articlecontainerdata,
 }: ArticleContainerProps) {
+  const categoryname =
+    articlecontainerdata?.attributes?.category?.data?.attributes?.categoryname
+
   return (
     <div>
       <Link
-        className="flex flex-col items-center justify-center p-4"
-        href={`articles/${articlecontainerdata.attributes.slug}`}
+        className="flex flex-col flex-wrap items-center justify-center p-4"
+        href={`/articles/${articlecontainerdata.attributes.slug}`}
       >
-        <div className="hidden">
-          {
-            articlecontainerdata.attributes.category.data.attributes
-              .categoryname
-          }
-        </div>
         <Image
           src={
-            articlecontainerdata.attributes.imageUrl.data.attributes.formats
-              .large.url
+            articlecontainerdata?.attributes?.imageUrl?.data?.attributes
+              ?.formats?.large?.url
           }
           alt="Article Image"
           width={600}
@@ -59,8 +56,6 @@ export function ArticleContainer({
         <div className="flex-wrap text-lg font-bold">
           {articlecontainerdata.attributes.title}
         </div>
-
-        {/* <Link href={articlecontainerdata.attributes.slug}>Read More</Link> */}
       </Link>
     </div>
   )

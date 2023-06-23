@@ -20,7 +20,9 @@ interface Articledata {
     updatedAt: string
     imageUrl: {
       data: {
-        attributes: {}
+        attributes: {
+          url: string
+        }
       }
     }
   }
@@ -46,9 +48,14 @@ export function ArticlePreview({ articledata }: ArticlePreviewProps) {
         <div className="min-h-screen w-3/5">
           <ArticleItem
             title={articledata.attributes.title}
-            category={articledata.attributes.category}
+            category={
+              articledata.attributes.category?.data?.attributes?.categoryname ??
+              ""
+            }
             description={articledata.attributes.description}
-            imgUrl={articledata.attributes.imageUrl}
+            imgUrl={
+              articledata.attributes.imageUrl?.data?.attributes?.url ?? ""
+            }
             content={articledata.attributes.content}
             author={articledata.attributes.author}
             photographer={articledata.attributes.photographer}

@@ -4,11 +4,14 @@ import { useQueryClient } from "react-query"
 import { ArticleContainer } from "@/components/Categories/ArticleContainer"
 import LandingCarousel from "@/components/MainPage/LandingCarousel"
 
-async function getData(slug: string) {
-  const pageSize = 2
-  const res = await fetch(`http://127.0.0.1:1337/api/news-articles?populate=*`)
+async function getData(pageNumber: string) {
+  const currentPage = pageNumber ?? 1
 
-  console.log(res)
+  const pageSize = 8
+  const res = await fetch(
+    `http://127.0.0.1:1337/api/news-articles?populate=*&pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}`
+  )
+
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -24,21 +27,32 @@ async function getData(slug: string) {
 }
 
 export default async function IndexPage({
-  params,
+  searchParams,
 }: {
-  params: { slug: string }
+  searchParams: { page?: string }
 }) {
-  const data = await getData(params.slug)
+  const data = await getData(searchParams?.page ?? "1")
 
-  console.log(data)
+  const isFirstPage = !searchParams!.page || searchParams?.page === "1"
+
+  const allArticles = [...data.data]
+
+  const [first, second, third, fourth, ...rest] = allArticles
+
+  const gridArticles = isFirstPage ? [...rest] : [...allArticles]
 
   return (
     <main>
       <section>
-        <LandingCarousel articles={data.data} paginationData={data.meta} />
+        {isFirstPage && (
+          <LandingCarousel
+            articles={[first, second, third, fourth]}
+            paginationData={data.meta}
+          />
+        )}
       </section>
       <section className="flex flex-wrap justify-center">
-        {data.data.map((articleData: any) => (
+        {gridArticles.map((articleData: any) => (
           <ArticleContainer articlecontainerdata={articleData} />
         ))}
       </section>

@@ -3,13 +3,11 @@ import ArticlePreview from "@/components/ArticlePages/ArticlePreview"
 async function getData(slug: string) {
   const pageSize = 2
   const res = await fetch(
-    `http://127.0.0.1:1337/api/news-articles?filters[slug][$eq]=${slug}`
+    `http://127.0.0.1:1337/api/news-articles?filters[slug][$eq]=${slug}&populate=*`
   )
 
-  console.log(res)
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
-
   // Recommendation: handle errors
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -27,8 +25,6 @@ export default async function ArticlePage({
   params: { slug: string }
 }) {
   const data = await getData(params.slug)
-
-  console.log(data)
 
   return (
     <main>

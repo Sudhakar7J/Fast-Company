@@ -21,11 +21,7 @@ interface Article {
     imageUrl: {
       data: {
         attributes: {
-          formats: {
-            small: {
-              url: string
-            }
-          }
+          url: string
         }
       }
     }
@@ -49,7 +45,7 @@ export function LandingCarousel({
   paginationData,
 }: LandingCarouselProps) {
   const { isMobileScreen } = useScreenSize()
-  const [highlightedArticle, setHighlightedArticle] = useState(1)
+  const [highlightedArticle, setHighlightedArticle] = useState(articles[0].id)
 
   const onHighlightArticle = (id: React.SetStateAction<number>) => {
     if (isMobileScreen) {
@@ -58,23 +54,29 @@ export function LandingCarousel({
     setHighlightedArticle(id)
   }
 
-  const selectedImage = MockCarouselData.find(
-    (carouselItem) => carouselItem.id === highlightedArticle
-  )?.imageUrl
+  console.log(articles)
+
+  const selectedImage =
+    articles?.find((article) => article.id === highlightedArticle)?.attributes
+      ?.imageUrl?.data?.attributes.url ?? ""
+
+  console.log(highlightedArticle, selectedImage)
 
   useEffect(() => {
+    if (!articles.length) {
+      return
+    }
+
     const interval = setInterval(() => {
       setHighlightedArticle((prevState) => {
-        const selectedIndex = prevState % MockCarouselData.length
+        const selectedIndex = prevState % articles.length
 
-        return MockCarouselData[selectedIndex].id
+        return articles[selectedIndex].id
       })
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [])
-
-  console.log({ articles })
+  }, [articles])
 
   return (
     <div className="min-h-screen min-w-full">
@@ -83,36 +85,24 @@ export function LandingCarousel({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="relative flex h-1/3 w-full justify-center md:m-0 md:h-2/3 md:w-full"
+          className="relative flex h-screen  w-full justify-center "
         >
-          <Image
-            src={selectedImage}
-            alt="logo"
-            fill
-            style={{ objectFit: "cover" }}
-            className="contain"
-          />
+          <div className="h-1/3 w-full">
+            <Image
+              src={selectedImage}
+              alt="logo"
+              fill
+              style={{ objectFit: "cover" }}
+              className="contain"
+            />
+          </div>
         </motion.div>
       )}
       <div className="flex cursor-pointer flex-col md:grid md:grid-cols-4 md:gap-4">
         {articles.map(
           ({
             id,
-            attributes: {
-              title,
-              category,
-              description,
-              slug,
-              imageUrl: {
-                data: {
-                  attributes: {
-                    formats: {
-                      small: { url },
-                    },
-                  },
-                },
-              },
-            },
+            attributes: { title, category, description, slug, imageUrl },
           }) => (
             <Link key={id} href={`articles/${slug}`}>
               <CarouselItem
@@ -123,23 +113,10 @@ export function LandingCarousel({
                   onHighlightArticle,
                   highlightedArticle,
                 }}
-                imageUrl={url}
+                imageUrl={imageUrl}
               />
             </Link>
           )
-        )}
-      </div>
-      <div className="mt-4 flex justify-center">
-        {paginationData?.pagination?.page <
-          paginationData?.pagination?.pageCount && (
-          <Link href={`/?page=${paginationData?.pagination?.page + 1}`}>
-            Next
-          </Link>
-        )}
-        {paginationData?.pagination?.page > 1 && (
-          <Link href={`/?page=${paginationData?.pagination?.page - 1}`}>
-            Previous
-          </Link>
         )}
       </div>
     </div>

@@ -27,11 +27,7 @@ export function CarouselItem({
   imageUrl: {
     data: {
       attributes: {
-        formats: {
-          large: {
-            url: string
-          }
-        }
+        url: string
       }
     }
   }
@@ -69,7 +65,7 @@ export function CarouselItem({
         <div className="relative my-auto w-1/3">
           <div className="relative items-center justify-center md:hidden ">
             <Image
-              src={imageUrl}
+              src={imageUrl?.data?.attributes?.url}
               alt="carousel-item"
               width={1000}
               height={200}
