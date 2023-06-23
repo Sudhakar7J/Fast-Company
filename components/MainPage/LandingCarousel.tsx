@@ -74,6 +74,8 @@ export function LandingCarousel({
     return () => clearInterval(interval)
   }, [])
 
+  console.log({ articles })
+
   return (
     <div className="min-h-screen min-w-full">
       {selectedImage && (
@@ -110,34 +112,21 @@ export function LandingCarousel({
                   },
                 },
               },
-              isSponsoredArticle,
             },
-          }) =>
-            isSponsoredArticle ? (
-              <SponsoredCarouselItem
-                key={id}
+          }) => (
+            <Link key={id} href={`articles/${slug}`}>
+              <CarouselItem
                 {...{
                   id,
                   title,
                   category,
-                  slug,
+                  onHighlightArticle,
+                  highlightedArticle,
                 }}
                 imageUrl={url}
               />
-            ) : (
-              <Link key={id} href={`articles/${slug}`}>
-                <CarouselItem
-                  {...{
-                    id,
-                    title,
-                    category,
-                    onHighlightArticle,
-                    highlightedArticle,
-                  }}
-                  imageUrl={url}
-                />
-              </Link>
-            )
+            </Link>
+          )
         )}
       </div>
       <div className="mt-4 flex justify-center">

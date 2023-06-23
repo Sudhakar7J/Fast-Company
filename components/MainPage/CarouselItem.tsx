@@ -16,8 +16,25 @@ export function CarouselItem({
 }: {
   id: number
   title: string
-  category: string
-  imageUrl: string
+  category: {
+    data: {
+      attributes: {
+        categoryname: string
+        slug: string
+      }
+    }
+  }
+  imageUrl: {
+    data: {
+      attributes: {
+        formats: {
+          large: {
+            url: string
+          }
+        }
+      }
+    }
+  }
   highlightedArticle: number
   onHighlightArticle: (id: number) => void
 }) {
@@ -39,7 +56,12 @@ export function CarouselItem({
         onMouseEnter={() => onHighlightArticle(id)}
       >
         <div className="flex w-2/3 grow flex-col pr-6 md:w-max md:pr-0">
-          <div className="font-bold uppercase text-gray-700">{category}</div>
+          {category?.data?.attributes?.categoryname && (
+            <div className="font-bold uppercase text-gray-700">
+              {category.data.attributes.categoryname}
+            </div>
+          )}
+
           <div className="flex text-lg font-bold leading-5 md:text-2xl md:leading-none">
             {title}
           </div>
