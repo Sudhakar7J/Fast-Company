@@ -52,6 +52,8 @@ export function ArticleContainer({
           alt="Article Image"
           width={600}
           height={100}
+          style={{ objectFit: "cover" }}
+          className="contain"
         />
         <div className="flex-wrap text-lg font-bold">
           {articlecontainerdata.attributes.title}

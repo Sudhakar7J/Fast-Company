@@ -54,7 +54,7 @@ export function CarouselItem({
         <div className="flex w-2/3 h-2/3 grow flex-col pr-6 md:w-max md:pr-0">
           {category?.data?.attributes?.categoryname && (
             <div className="font-bold uppercase text-gray-700">
-              {category.data.attributes.categoryname}
+              {category?.data?.attributes?.categoryname}
             </div>
           )}
 

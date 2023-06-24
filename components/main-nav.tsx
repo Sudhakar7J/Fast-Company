@@ -15,15 +15,16 @@ export function MainNav() {
           <Search href="/" className="cursor-pointer" />
         </div>
       </div>
-      <div className="flex flex-1 items-center ">
+      <Link href="/" className="flex flex-1 items-center">
         <Image
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Fast_Company_logo.svg/120px-Fast_Company_logo.svg.png?20180515163340"
           alt="Logo"
           width={120}
           height={28}
-          className=" mx-auto cursor-pointer  "
+          className=" mx-auto cursor-pointer contain"
+          style={{ objectFit: "cover" }}
         />
-      </div>
+      </Link>
     </>
   )
 }

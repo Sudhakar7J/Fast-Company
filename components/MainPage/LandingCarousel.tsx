@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 
 import { useScreenSize } from "@/hooks/useScreenSize"
 
-import { CarouselItem } from "./CarouselItem"
+import { CarouselItem } from "./CarouselItem.1"
 import { SponsoredCarouselItem } from "./SponsoredCarouselItem"
 
 interface Article {
@@ -79,13 +79,13 @@ export function LandingCarousel({
   }, [articles])
 
   return (
-    <div className="min-h-screen min-w-full">
+    <div className="h-screen min-w-full">
       {selectedImage && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="relative flex h-screen  w-full justify-center "
+          className="relative flex h-2/3 w-full justify-center "
         >
           <div className="h-1/3 w-full">
             <Image

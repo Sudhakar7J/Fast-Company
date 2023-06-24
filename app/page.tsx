@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useQueryClient } from "react-query"
 
@@ -40,6 +41,7 @@ export default async function IndexPage({
   const [first, second, third, fourth, ...rest] = allArticles
 
   const gridArticles = isFirstPage ? [...rest] : [...allArticles]
+  const paginationData = data.meta // Define paginationData
 
   return (
     <main>
@@ -56,6 +58,20 @@ export default async function IndexPage({
           <ArticleContainer articlecontainerdata={articleData} />
         ))}
       </section>
+
+      <div className="mt-4 flex justify-center">
+        {paginationData?.pagination?.page <
+          paginationData?.pagination?.pageCount && (
+          <Link href={`/?page=${paginationData?.pagination?.page + 1}`}>
+            Next
+          </Link>
+        )}
+        {paginationData?.pagination?.page > 1 && (
+          <Link href={`/?page=${paginationData?.pagination?.page - 1}`}>
+            Previous
+          </Link>
+        )}
+      </div>
     </main>
   )
 }

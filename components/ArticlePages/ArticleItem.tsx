@@ -38,7 +38,14 @@ export function ArticleItem({
         </div>
         <div className="relative flex w-full flex-col items-start pt-6">
           <div className="relative">
-            <Image src={imgUrl} alt="carousel-item" width={2000} height={200} />
+            <Image
+              src={imgUrl}
+              alt="carousel-item"
+              width={2000}
+              height={200}
+              style={{ objectFit: "cover" }}
+              className="contain"
+            />
           </div>
           <div className="text-md pt-2 font-medium text-gray-700">
             [Photos: {photographer}]
