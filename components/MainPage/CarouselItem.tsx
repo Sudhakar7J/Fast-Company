@@ -2,6 +2,7 @@
 
 import { useMemo } from "react"
 import Image from "next/image"
+import { playfairDisplay } from "@/fonts/fonts"
 import { motion } from "framer-motion"
 
 import { Separator } from "../ui/separator"
@@ -48,17 +49,20 @@ export function CarouselItem({
           opacity: isSelectedArticle ? 1 : 0.3,
           transition: { ease: "easeInOut" },
         }}
-        className="flex p-4 md:border-t-8"
+        className="flex px-4 py-2 md:border-t-8 h-full"
         onMouseEnter={() => onHighlightArticle(id)}
       >
         <div className="flex w-2/3 h-2/3 grow flex-col pr-6 md:w-max md:pr-0">
           {category?.data?.attributes?.categoryname && (
-            <div className="font-bold uppercase text-gray-700">
-              {category.data.attributes.categoryname}
+            <div className="font-bold uppercase text-gray-700 text-xs">
+              {category?.data?.attributes?.categoryname}
             </div>
           )}
 
-          <div className="flex text-lg font-bold leading-5 md:text-2xl md:leading-none">
+          <div
+            className="flex text-lg font-bold leading-5 md:text-2xl md:leading-none"
+            style={playfairDisplay.style}
+          >
             {title}
           </div>
         </div>

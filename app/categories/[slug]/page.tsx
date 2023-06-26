@@ -1,40 +1,23 @@
+import Link from "next/link"
+
+import useArticlesData from "@/hooks/useArticlesData"
 import { ArticleContainer } from "@/components/Categories/ArticleContainer"
 import { HoverSideNav } from "@/components/Navigation/HoverSideNav"
 
-async function getData(slug: string) {
-  const pageSize = 2
-  const articlesRes = await fetch(
-    `http://127.0.0.1:1337/api/news-articles?filters[category][slug][$eq]=${slug}&populate=*`
-  )
-
-  const categoryRes = await fetch(
-    `http://127.0.0.1:1337/api/categories?filters[slug][$eq]=${slug}`
-  )
-
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-  // Recommendation: handle errors
-  if (!articlesRes.ok || !categoryRes.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data")
-  }
-
-  const articlesResponseJson = await articlesRes.json()
-
-  const categoriesResponseJson = await categoryRes.json()
-
-  return {
-    articlesData: articlesResponseJson,
-    categoriesData: categoriesResponseJson,
-  }
-}
-
 export default async function CategoryPage({
   params,
+  searchParams,
 }: {
   params: { slug: string }
+  searchParams: { page: string }
 }) {
-  const { articlesData, categoriesData } = await getData(params.slug)
+  const { getArticlesByCategory, getArticles } = useArticlesData()
+  const { articlesData, categoriesData } = await getArticlesByCategory(
+    params.slug,
+    searchParams.page
+  )
+
+  const paginationData = articlesData.meta
 
   const categoryName = categoriesData?.data?.[0]?.attributes?.categoryname
   const categoryDescription =
@@ -53,6 +36,27 @@ export default async function CategoryPage({
           ))}
         </div>
       </section>
+      <div className="mt-4 flex justify-center text-black">
+        {paginationData?.pagination?.page <
+          paginationData?.pagination?.pageCount && (
+          <Link
+            href={`/categories/${categoryName}?page=${
+              paginationData?.pagination?.page + 1
+            }`}
+          >
+            Next
+          </Link>
+        )}
+        {paginationData?.pagination?.page > 1 && (
+          <Link
+            href={`/categories/${categoryName}?page=${
+              paginationData?.pagination?.page - 1
+            }`}
+          >
+            Previous
+          </Link>
+        )}
+      </div>
     </main>
   )
 }

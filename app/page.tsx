@@ -1,38 +1,17 @@
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useQueryClient } from "react-query"
 
+import useArticlesData from "@/hooks/useArticlesData"
+import { Separator } from "@/components/ui/separator"
 import { ArticleContainer } from "@/components/Categories/ArticleContainer"
 import LandingCarousel from "@/components/MainPage/LandingCarousel"
-
-async function getData(pageNumber: string) {
-  const currentPage = pageNumber ?? 1
-
-  const pageSize = 8
-  const res = await fetch(
-    `http://127.0.0.1:1337/api/news-articles?populate=*&pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}`
-  )
-
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data")
-  }
-
-  const responseJson = await res.json()
-
-  return responseJson
-}
 
 export default async function IndexPage({
   searchParams,
 }: {
   searchParams: { page?: string }
 }) {
-  const data = await getData(searchParams?.page ?? "1")
+  const { getArticles } = useArticlesData()
+  const data = await getArticles(searchParams?.page ?? "1")
 
   const isFirstPage = !searchParams!.page || searchParams?.page === "1"
 
@@ -41,7 +20,7 @@ export default async function IndexPage({
   const [first, second, third, fourth, ...rest] = allArticles
 
   const gridArticles = isFirstPage ? [...rest] : [...allArticles]
-  const paginationData = data.meta // Define paginationData
+  const paginationData = data.meta
 
   return (
     <main>
@@ -52,8 +31,9 @@ export default async function IndexPage({
             paginationData={data.meta}
           />
         )}
+        <Separator className="bg-black rounded h-0.5 my-10" />
       </section>
-      <section className="flex flex-wrap justify-center">
+      <section className="flex flex-wrap justify-center ">
         {gridArticles.map((articleData: any) => (
           <ArticleContainer articlecontainerdata={articleData} />
         ))}

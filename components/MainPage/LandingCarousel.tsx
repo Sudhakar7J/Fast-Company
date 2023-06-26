@@ -3,12 +3,11 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { MockCarouselData } from "@/mockdataconfigs/MockCarouselData"
 import { motion } from "framer-motion"
 
 import { useScreenSize } from "@/hooks/useScreenSize"
 
-import { CarouselItem } from "./CarouselItem.1"
+import { CarouselItem } from "./CarouselItem"
 import { SponsoredCarouselItem } from "./SponsoredCarouselItem"
 
 interface Article {
@@ -54,13 +53,9 @@ export function LandingCarousel({
     setHighlightedArticle(id)
   }
 
-  console.log(articles)
-
   const selectedImage =
     articles?.find((article) => article.id === highlightedArticle)?.attributes
       ?.imageUrl?.data?.attributes.url ?? ""
-
-  console.log(highlightedArticle, selectedImage)
 
   useEffect(() => {
     if (!articles.length) {
@@ -85,7 +80,7 @@ export function LandingCarousel({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="relative flex h-2/3 w-full justify-center "
+          className="relative flex h-4/5 w-full justify-center "
         >
           <div className="h-1/3 w-full">
             <Image
@@ -98,7 +93,7 @@ export function LandingCarousel({
           </div>
         </motion.div>
       )}
-      <div className="flex cursor-pointer flex-col md:grid md:grid-cols-4 md:gap-4">
+      <div className="flex cursor-pointer flex-col md:grid md:grid-cols-4 md:gap-4 px-28">
         {articles.map(
           ({
             id,
