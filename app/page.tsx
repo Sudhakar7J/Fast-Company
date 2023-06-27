@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { UserButton } from "@clerk/nextjs"
 
 import useArticlesData from "@/hooks/useArticlesData"
 import { Separator } from "@/components/ui/separator"
@@ -26,12 +27,14 @@ export default async function IndexPage({
     <main>
       <section>
         {isFirstPage && (
-          <LandingCarousel
-            articles={[first, second, third, fourth]}
-            paginationData={data.meta}
-          />
+          <>
+            <LandingCarousel
+              articles={[first, second, third, fourth]}
+              paginationData={data.meta}
+            />
+            <Separator className="bg-black rounded h-0.5 my-10" />
+          </>
         )}
-        <Separator className="bg-black rounded h-0.5 my-10" />
       </section>
       <section className="flex flex-wrap justify-center ">
         {gridArticles.map((articleData: any) => (
@@ -39,16 +42,22 @@ export default async function IndexPage({
         ))}
       </section>
 
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4 flex justify-center  text-xl font-semibold py-4 mb-10">
         {paginationData?.pagination?.page <
           paginationData?.pagination?.pageCount && (
-          <Link href={`/?page=${paginationData?.pagination?.page + 1}`}>
-            Next
+          <Link
+            className="mx-10 border-2 border-black bg-amber-500 rounded-xl px-2"
+            href={`/?page=${paginationData?.pagination?.page + 1}`}
+          >
+            More Articles
           </Link>
         )}
         {paginationData?.pagination?.page > 1 && (
-          <Link href={`/?page=${paginationData?.pagination?.page - 1}`}>
-            Previous
+          <Link
+            className="mx-10 border-2 border-black bg-amber-500 rounded-xl px-2"
+            href={`/?page=${paginationData?.pagination?.page - 1}`}
+          >
+            Previous Page
           </Link>
         )}
       </div>

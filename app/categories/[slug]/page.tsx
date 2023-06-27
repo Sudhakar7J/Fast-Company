@@ -36,10 +36,11 @@ export default async function CategoryPage({
           ))}
         </div>
       </section>
-      <div className="mt-4 flex justify-center text-black">
+      <div className="mt-4 flex justify-center  text-xl font-semibold py-4 mb-10">
         {paginationData?.pagination?.page <
           paginationData?.pagination?.pageCount && (
           <Link
+            className="mx-10 border-2 border-black bg-amber-500 rounded-xl px-2"
             href={`/categories/${categoryName}?page=${
               paginationData?.pagination?.page + 1
             }`}
@@ -49,6 +50,7 @@ export default async function CategoryPage({
         )}
         {paginationData?.pagination?.page > 1 && (
           <Link
+            className="mx-10 border-2 border-black bg-amber-500 rounded-xl px-2"
             href={`/categories/${categoryName}?page=${
               paginationData?.pagination?.page - 1
             }`}
