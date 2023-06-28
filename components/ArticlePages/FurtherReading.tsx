@@ -1,30 +1,27 @@
-import Image from "next/image"
+import React from "react"
 
-import { Separator } from "../ui/separator"
+import useArticlesData from "@/hooks/useArticlesData"
 
-export function FurtherReading({
-  image,
-  title,
+import { ArticleContainer } from "../Categories/ArticleContainer"
+
+export async function FurtherReading({
+  categorySlug,
 }: {
-  image: string
-  title: string
+  categorySlug: string
 }) {
+  const { getArticlesByCategory } = useArticlesData()
+
+  const { articlesData } = await getArticlesByCategory(categorySlug, "1")
+
   return (
-    <div className="flex flex-col items-start justify-start ">
-      <div className="font-lg mb-4 font-bold uppercase">Further Reading:</div>
-      <div className="flex flex-row items-center">
-        <div className="relative h-24 w-40">
-          <Image
-            src={image}
-            alt={"imagee"}
-            fill
-            style={{ objectFit: "cover" }}
-            className="contain"
-          />
-        </div>
-        <div className="ml-4 flex text-xl font-bold">{title}</div>
-      </div>
-      <Separator className="my-6 border" />
+    <div className="flex flex-col ">
+      <div className="font-semibold  text-3xl">Further reading</div>
+      {articlesData.data.map((articleData: any) => (
+        <ArticleContainer
+          articlecontainerdata={articleData}
+          viewMode="HORIZONTAL"
+        />
+      ))}
     </div>
   )
 }

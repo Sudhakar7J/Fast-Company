@@ -62,17 +62,15 @@ export function ArticlePreview({ articledata }: ArticlePreviewProps) {
             updatedAtDate={formattedDate}
             updatedAtTime={formattedTime}
           />
-          <div>
-            <FurtherReading
-              image={
-                "https://images.unsplash.com/photo-1686818360329-2aa066bf7565?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-              }
-              title={
-                "In this Massachusetts neighborhood, nearly every home is switching to geothermal energy"
-              }
-            />
-          </div>
+
+          {/* <FurtherReading
+            imgUrl={
+              articledata.attributes.imageUrl?.data?.attributes?.url ?? ""
+            }
+            title={articledata.attributes.title}
+          /> */}
         </div>
+
         <div className="flex w-1/4">
           <FeaturedVideo
             featuredText={"FEATURED VIDEO"}
@@ -80,7 +78,7 @@ export function ArticlePreview({ articledata }: ArticlePreviewProps) {
               "https://www.youtube.com/watch?v=599ogMbXIyA&ab_channel=Devistry"
             }
             description={
-              "The ACLU's Amber Hikes shares how businesses can support LGBTQ+ Communities"
+              "The ACLU's Amber Hi  kes shares how businesses can support LGBTQ+ Communities"
             }
           />
         </div>
