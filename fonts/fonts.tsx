@@ -1,5 +1,9 @@
-import { Playfair_Display } from "next/font/google"
+import { Playfair_Display, Ysabeau } from "next/font/google"
 
 const playfairDisplay = Playfair_Display({ subsets: ["latin"] })
+const ysabeaufont = Ysabeau({
+  weight: "900",
+  subsets: ["latin"],
+})
 
-export { playfairDisplay }
+export { playfairDisplay, ysabeaufont }

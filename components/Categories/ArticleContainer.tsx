@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { playfairDisplay } from "@/fonts/fonts"
+import { playfairDisplay, ysabeaufont } from "@/fonts/fonts"
 
 interface ArticleContainerData {
   id: number
@@ -29,6 +29,12 @@ interface ArticleContainerData {
   }
 }
 
+interface PaginationData {
+  pagination: {
+    page: number
+    pageCount: number
+  }
+}
 interface ArticleContainerProps {
   articlecontainerdata: ArticleContainerData
   viewMode?: "HORIZONTAL"
@@ -44,10 +50,10 @@ export function ArticleContainer({
   const isHorizontalViewMode = viewMode === "HORIZONTAL"
 
   return (
-    <div className="flex py-10">
+    <div className="flex py-2">
       <Link
-        className={`flex px-6 h-min ${
-          isHorizontalViewMode ? "flex-row" : "flex-col flex-wrap"
+        className={`flex h-min ${
+          isHorizontalViewMode ? "flex-row" : "flex-col flex-wrap px-6"
         }`}
         href={`/articles/${articlecontainerdata.attributes.slug}`}
       >
@@ -57,16 +63,18 @@ export function ArticleContainer({
               ?.formats?.large?.url
           }
           alt="Article Image"
-          width={isHorizontalViewMode ? 80 : 600}
-          height={isHorizontalViewMode ? 60 : 100}
+          width={isHorizontalViewMode ? 160 : 600}
+          height={isHorizontalViewMode ? 90 : 100}
           style={{ objectFit: "cover" }}
           className="contain h-3/6"
         />
         <div
-          className={`flex-wrap text-2xl font-bold py-4 text-justify truncate overflow-hidden text-ellipsis max-w-xl ${
-            isHorizontalViewMode ? "ml-4" : ""
+          className={`flex-wrap text-2xl font-bold py-4 text-justify truncate overflow-hidden   ${
+            isHorizontalViewMode ? "ml-4" : "text-ellipsis max-w-xl"
           }`}
-          style={playfairDisplay.style}
+          style={
+            isHorizontalViewMode ? ysabeaufont.style : playfairDisplay.style
+          }
         >
           {articlecontainerdata.attributes.title}
         </div>

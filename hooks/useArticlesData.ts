@@ -23,13 +23,19 @@ const useArticlesData = () => {
 
   async function getArticlesByCategory(
     categorySlug: string,
-    pageNumber: string
+    pageNumber: string,
+    viewMode?: string
   ) {
     console.log(categorySlug, pageNumber)
     const currentPage = pageNumber ?? 1
-    const pageSize = 8
+
+    const isHorizontalViewMode = viewMode === "HORIZONTAL"
+    const pageSize = isHorizontalViewMode ? 4 : 8
+
     const articlesRes = await fetch(
-      `${process.env.STRAPI_BASE_URL}/news-articles?filters[category][slug][$eq]=${categorySlug}&populate=*&pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}`
+      isHorizontalViewMode
+        ? `${process.env.STRAPI_BASE_URL}/news-articles?filters[category][slug][$notContainsi]=${categorySlug}&filters[viewMode][$nin]=${viewMode}&populate=*&pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}`
+        : `${process.env.STRAPI_BASE_URL}/news-articles?filters[category][slug][$eq]=${categorySlug}&populate=*&pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}`
     )
 
     const categoryRes = await fetch(

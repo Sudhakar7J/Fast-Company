@@ -3,9 +3,9 @@ import { format, formatISO } from "date-fns"
 import Markdown from "markdown-to-jsx"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 
+import { Separator } from "../ui/separator"
 import { ArticleItem } from "./ArticleItem"
 import FeaturedVideo from "./FeaturedVideo"
-import FurtherReading from "./FurtherReading"
 
 interface Articledata {
   id: number
@@ -62,13 +62,6 @@ export function ArticlePreview({ articledata }: ArticlePreviewProps) {
             updatedAtDate={formattedDate}
             updatedAtTime={formattedTime}
           />
-
-          {/* <FurtherReading
-            imgUrl={
-              articledata.attributes.imageUrl?.data?.attributes?.url ?? ""
-            }
-            title={articledata.attributes.title}
-          /> */}
         </div>
 
         <div className="flex w-1/4">
