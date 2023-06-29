@@ -2,7 +2,6 @@ import Link from "next/link"
 
 import useArticlesData from "@/hooks/useArticlesData"
 import { ArticleContainer } from "@/components/Categories/ArticleContainer"
-import { HoverSideNav } from "@/components/Navigation/HoverSideNav"
 
 export default async function CategoryPage({
   params,
@@ -24,19 +23,21 @@ export default async function CategoryPage({
     categoriesData?.data?.[0]?.attributes?.categorydescription
 
   return (
-    <main>
-      <section className="flex flex-col flex-wrap items-center justify-center pt-28">
+    <main className="h-screen w-screen">
+      <section className="md:flex flex-col items-center justify-center pt-28 ">
         <div className="flex flex-col items-center mb-10">
-          <div className="text-4xl font-bold uppercase">{categoryName}</div>
+          <div className="text-xl md:text-4xl font-bold uppercase">
+            {categoryName}
+          </div>
           <div className="text-gray-400">{categoryDescription} </div>
         </div>
-        <div className=" flex flex-wrap px-20">
+        <div className=" md:flex flex-wrap md:px-6">
           {articlesData.data.map((articleData: any) => (
             <ArticleContainer articlecontainerdata={articleData} />
           ))}
         </div>
       </section>
-      <div className="mt-4 flex justify-center  text-xl font-semibold py-4 mb-10">
+      <div className="mt-4 flex justify-center text-xl font-semibold py-4 mb-10">
         {paginationData?.pagination?.page <
           paginationData?.pagination?.pageCount && (
           <Link
@@ -45,7 +46,7 @@ export default async function CategoryPage({
               paginationData?.pagination?.page + 1
             }`}
           >
-            Next
+            More Articles
           </Link>
         )}
         {paginationData?.pagination?.page > 1 && (
@@ -55,7 +56,7 @@ export default async function CategoryPage({
               paginationData?.pagination?.page - 1
             }`}
           >
-            Previous
+            Previous Page
           </Link>
         )}
       </div>

@@ -1,4 +1,6 @@
-import React from "react"
+"use client"
+
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { playfairDisplay, ysabeaufont } from "@/fonts/fonts"
@@ -35,6 +37,7 @@ interface PaginationData {
     pageCount: number
   }
 }
+
 interface ArticleContainerProps {
   articlecontainerdata: ArticleContainerData
   viewMode?: "HORIZONTAL"
@@ -50,10 +53,12 @@ export function ArticleContainer({
   const isHorizontalViewMode = viewMode === "HORIZONTAL"
 
   return (
-    <div className="flex py-2">
+    <div className="flex py-2 min-w-width">
       <Link
         className={`flex h-min ${
-          isHorizontalViewMode ? "flex-row" : "flex-col flex-wrap px-6"
+          isHorizontalViewMode
+            ? "flex-row"
+            : "flex-col flex-wrap items-center px-6"
         }`}
         href={`/articles/${articlecontainerdata.attributes.slug}`}
       >
@@ -66,11 +71,11 @@ export function ArticleContainer({
           width={isHorizontalViewMode ? 160 : 600}
           height={isHorizontalViewMode ? 90 : 100}
           style={{ objectFit: "cover" }}
-          className="contain h-3/6"
+          className="contain h-auto w-full md:h-3/6 md:w-auto  "
         />
         <div
-          className={`flex-wrap text-2xl font-bold py-4 text-justify truncate overflow-hidden   ${
-            isHorizontalViewMode ? "ml-4" : "text-ellipsis max-w-xl"
+          className={`flex-wrap text-sm md:text-2xl font-bold py-4 text-left  md:flex  overflow-hidden  ${
+            isHorizontalViewMode ? "ml-4 truncate " : "text-ellipsis max-w-lg "
           }`}
           style={
             isHorizontalViewMode ? ysabeaufont.style : playfairDisplay.style

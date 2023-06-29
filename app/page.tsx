@@ -26,17 +26,28 @@ export default async function IndexPage({
   return (
     <main>
       <section>
-        {isFirstPage && (
-          <>
-            <LandingCarousel
-              articles={[first, second, third, fourth]}
-              paginationData={data.meta}
-            />
-            <Separator className="bg-black rounded h-0.5 my-10" />
-          </>
-        )}
+        <div className="md:block hidden">
+          {isFirstPage && (
+            <>
+              <LandingCarousel
+                articles={[first, second, third, fourth]}
+                paginationData={data.meta}
+              />
+              <Separator className="bg-black rounded h-0.5 my-10" />
+            </>
+          )}
+        </div>
       </section>
-      <section className="flex flex-wrap justify-center ">
+      <section className="flex flex-wrap   md:hidden ">
+        <div className="font-bold text-md uppercase md:hidden block mt-16 ">
+          Popular Articles
+        </div>
+        {allArticles.map((articleData: any) => (
+          <ArticleContainer articlecontainerdata={articleData} />
+        ))}
+      </section>
+
+      <section className="md:flex flex-wrap justify-center hidden   ">
         {gridArticles.map((articleData: any) => (
           <ArticleContainer articlecontainerdata={articleData} />
         ))}

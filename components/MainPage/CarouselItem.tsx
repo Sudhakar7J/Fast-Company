@@ -60,7 +60,7 @@ export function CarouselItem({
           )}
 
           <div
-            className="flex text-lg font-bold leading-5 md:text-2xl md:leading-none"
+            className="flex text-sm font-bold leading-5 md:text-2xl md:leading-none text-ellipsis overflow-clip h-10 md:h-full md:overflow-visible"
             style={playfairDisplay.style}
           >
             {title}

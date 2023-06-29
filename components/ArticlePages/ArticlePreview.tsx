@@ -18,6 +18,7 @@ interface Articledata {
     photographer: string
     author: string
     updatedAt: string
+    viewcount: string
     imageUrl: {
       data: {
         attributes: {
@@ -44,8 +45,8 @@ export function ArticlePreview({ articledata }: ArticlePreviewProps) {
 
   return (
     <div>
-      <div className="flex items-center justify-center">
-        <div className="min-h-screen w-3/5">
+      <div className="flex items-center justify-center px-4 md:container">
+        <div className="min-h-screen md:w-3/5">
           <ArticleItem
             title={articledata.attributes.title}
             category={
@@ -61,17 +62,18 @@ export function ArticlePreview({ articledata }: ArticlePreviewProps) {
             photographer={articledata.attributes.photographer}
             updatedAtDate={formattedDate}
             updatedAtTime={formattedTime}
+            viewcount={articledata.attributes.viewcount}
           />
         </div>
 
-        <div className="flex w-1/4">
+        <div className="hidden md:block md:w-1/4">
           <FeaturedVideo
             featuredText={"FEATURED VIDEO"}
             videoUrl={
               "https://www.youtube.com/watch?v=599ogMbXIyA&ab_channel=Devistry"
             }
             description={
-              "The ACLU's Amber Hi  kes shares how businesses can support LGBTQ+ Communities"
+              "The ACLU's Amber Hikes shares how businesses can support LGBTQ+ Communities"
             }
           />
         </div>

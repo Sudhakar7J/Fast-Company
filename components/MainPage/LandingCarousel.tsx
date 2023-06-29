@@ -37,11 +37,13 @@ interface PaginationData {
 interface LandingCarouselProps {
   articles: Article[]
   paginationData: PaginationData
+  mobileview?: "MOBILEVIEW"
 }
 
 export function LandingCarousel({
   articles,
   paginationData,
+  mobileview,
 }: LandingCarouselProps) {
   const { isMobileScreen } = useScreenSize()
   const [highlightedArticle, setHighlightedArticle] = useState(articles[0].id)
@@ -73,16 +75,18 @@ export function LandingCarousel({
     return () => clearInterval(interval)
   }, [articles])
 
+  const isMobileViewMode = mobileview === "MOBILEVIEW"
+
   return (
-    <div className="h-screen min-w-full">
+    <div className=" min-h-full md:h-screen min-w-full ">
       {selectedImage && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="relative flex h-4/5 w-full justify-center "
+          className="relative h-4/5 w-full justify-center hidden md:block "
         >
-          <div className="h-1/3 w-full">
+          <div className=" h-1/3 w-full">
             <Image
               src={selectedImage}
               alt="logo"
@@ -93,7 +97,7 @@ export function LandingCarousel({
           </div>
         </motion.div>
       )}
-      <div className="flex cursor-pointer flex-col md:grid md:grid-cols-4 md:gap-4 px-28">
+      <div className="flex cursor-pointer flex-col md:grid md:grid-cols-4 md:gap-4 md:px-28 mt-16 md:mt-0">
         {articles.map(
           ({
             id,
