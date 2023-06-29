@@ -20,7 +20,12 @@ export default async function IndexPage({
 
   const [first, second, third, fourth, ...rest] = allArticles
 
+  const maingridArticles = isFirstPage
+    ? [first, second, third, fourth]
+    : [...allArticles]
+
   const gridArticles = isFirstPage ? [...rest] : [...allArticles]
+
   const paginationData = data.meta
 
   return (
@@ -38,19 +43,25 @@ export default async function IndexPage({
           )}
         </div>
       </section>
-      <section className="flex flex-wrap   md:hidden ">
-        <div className="font-bold text-md uppercase md:hidden block mt-16 ">
+      <section>
+        <div className="font-bold text-md uppercase md:hidden flex mt-16  items-center justify-center">
           Popular Articles
         </div>
-        {allArticles.map((articleData: any) => (
-          <ArticleContainer articlecontainerdata={articleData} />
-        ))}
+        <div className="flex flex-wrap md:hidden ">
+          {maingridArticles.map((articleData: any) => (
+            <ArticleContainer articlecontainerdata={articleData} />
+          ))}
+        </div>
       </section>
-
-      <section className="md:flex flex-wrap justify-center hidden   ">
-        {gridArticles.map((articleData: any) => (
-          <ArticleContainer articlecontainerdata={articleData} />
-        ))}
+      <section>
+        <div className="flex font-bold text-md md:text-2xl uppercase   items-center justify-center">
+          Featured Articles
+        </div>
+        <div className="md:flex flex-wrap justify-center    ">
+          {gridArticles.map((articleData: any) => (
+            <ArticleContainer articlecontainerdata={articleData} />
+          ))}
+        </div>
       </section>
 
       <div className="mt-4 flex justify-center  text-xl font-semibold py-4 mb-10">

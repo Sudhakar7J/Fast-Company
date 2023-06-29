@@ -56,9 +56,7 @@ export function ArticleContainer({
     <div className="flex py-2 min-w-width">
       <Link
         className={`flex h-min ${
-          isHorizontalViewMode
-            ? "flex-row"
-            : "flex-col flex-wrap items-center px-6"
+          isHorizontalViewMode ? "flex-row" : "flex-col flex-wrap  px-6"
         }`}
         href={`/articles/${articlecontainerdata.attributes.slug}`}
       >
