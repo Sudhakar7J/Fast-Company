@@ -24,20 +24,20 @@ export default async function CategoryPage({
 
   return (
     <main className="h-screen w-screen">
-      <section className="md:flex flex-col items-center justify-center pt-28 ">
-        <div className="flex flex-col items-center mb-10">
-          <div className="text-xl md:text-4xl font-bold uppercase">
+      <section className="flex flex-col items-center  justify-center pt-28 ">
+        <div className="flex flex-col items-center  mb-10">
+          <div className="text-xl md:text-4xl font-bold uppercase ">
             {categoryName}
           </div>
           <div className="text-gray-400">{categoryDescription} </div>
         </div>
-        <div className=" md:flex flex-wrap md:px-6">
+        <div className=" md:flex flex-wrap md:pl-20">
           {articlesData.data.map((articleData: any) => (
             <ArticleContainer articlecontainerdata={articleData} />
           ))}
         </div>
       </section>
-      <div className="mt-4 flex justify-center text-xl font-semibold py-4 mb-10">
+      <div className="mt-4 flex justify-center text-xs md:text-xl font-semibold py-4 mb-10">
         {paginationData?.pagination?.page <
           paginationData?.pagination?.pageCount && (
           <Link
