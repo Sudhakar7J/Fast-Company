@@ -84,7 +84,7 @@ export function LandingCarousel({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="relative h-4/5 w-full justify-center hidden md:block "
+          className="relative h-4/5 w-full justify-center  "
         >
           <div className=" h-1/3 w-full">
             <Image
