@@ -34,6 +34,7 @@ interface PaginationData {
     pageCount: number
   }
 }
+
 interface LandingCarouselProps {
   articles: Article[]
   paginationData: PaginationData
@@ -66,9 +67,11 @@ export function LandingCarousel({
 
     const interval = setInterval(() => {
       setHighlightedArticle((prevState) => {
-        const selectedIndex = prevState % articles.length
-
-        return articles[selectedIndex].id
+        const currentIndex = articles.findIndex(
+          (article) => article.id === prevState
+        )
+        const nextIndex = (currentIndex + 1) % articles.length
+        return articles[nextIndex].id
       })
     }, 4000)
 
@@ -78,15 +81,15 @@ export function LandingCarousel({
   const isMobileViewMode = mobileview === "MOBILEVIEW"
 
   return (
-    <div className=" min-h-full md:h-screen min-w-full ">
+    <div className="min-h-full md:h-screen min-w-full">
       {selectedImage && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="relative h-4/5 w-full justify-center hidden md:block "
+          className="relative h-4/5 w-full justify-center hidden md:block"
         >
-          <div className=" h-1/3 w-full">
+          <div className="h-1/3 w-full">
             <Image
               src={selectedImage}
               alt="logo"
