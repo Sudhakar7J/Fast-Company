@@ -26,7 +26,7 @@ export function SideNav() {
       </SheetTrigger>
       <SheetContent
         position="left"
-        size="sm lg:full"
+        size="sm"
         className="left-0 overflow-y-auto"
         style={{ maxHeight: "100vh" }}
       >
@@ -39,7 +39,6 @@ export function SideNav() {
                   navItem.name === "Login" ? "font-bold" : ""
                 }`}
               >
-                {" "}
                 {navItem.icon && <navItem.icon size={14} />}
                 {uppercaseNavItem(navItem).name}
               </div>

@@ -11,7 +11,13 @@ interface Articledata {
   id: number
   attributes: {
     title: string
-    category: string
+    category: {
+      data: {
+        attributes: {
+          categoryname: string
+        }
+      }
+    }
     description: string
     imgUrl: string
     content: string

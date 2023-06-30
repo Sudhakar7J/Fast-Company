@@ -66,7 +66,7 @@ export function ArticleContainer({
               ?.formats?.large?.url
           }
           alt="Article Image"
-          width={isHorizontalViewMode ? 160 : 600}
+          width={isHorizontalViewMode ? 120 : 600}
           height={isHorizontalViewMode ? 90 : 100}
           style={{ objectFit: "cover" }}
           className="contain h-auto w-full md:h-3/6 md:w-auto  "
