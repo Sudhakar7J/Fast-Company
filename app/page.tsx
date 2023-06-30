@@ -44,20 +44,31 @@ export default async function IndexPage({
         </div>
       </section>
       <section>
-        <div className="font-bold text-md uppercase md:hidden flex mt-16  items-center justify-center">
-          Popular Articles
-        </div>
-        <div className="flex flex-wrap md:hidden ">
-          {maingridArticles.map((articleData: any) => (
-            <ArticleContainer articlecontainerdata={articleData} />
-          ))}
-        </div>
+        {isFirstPage && (
+          <>
+            <div className="font-bold text-md uppercase md:hidden flex mt-16  items-center justify-center">
+              Popular Articles
+            </div>
+            <div className="flex flex-wrap md:hidden ">
+              {maingridArticles.map((articleData: any) => (
+                <ArticleContainer articlecontainerdata={articleData} />
+              ))}
+            </div>
+          </>
+        )}
       </section>
       <section>
-        <div className="flex font-bold text-md md:text-2xl uppercase   items-center justify-center">
-          Featured Articles
-        </div>
-        <div className="md:flex flex-wrap justify-center    ">
+        {isFirstPage ? (
+          <div className="flex font-bold text-md md:text-2xl uppercase items-center justify-center">
+            Featured Articles
+          </div>
+        ) : (
+          <div className="flex font-bold text-md md:text-2xl uppercase items-center justify-center mt-16">
+            More popular articles
+          </div>
+        )}
+
+        <div className="md:flex flex-wrap justify-center ">
           {gridArticles.map((articleData: any) => (
             <ArticleContainer articlecontainerdata={articleData} />
           ))}
