@@ -41,13 +41,11 @@ interface PaginationData {
 interface ArticleContainerProps {
   articlecontainerdata: ArticleContainerData
   viewMode?: "HORIZONTAL"
-  isMobileView?: boolean // Add the isMobileView prop
 }
 
 export function ArticleContainer({
   articlecontainerdata,
   viewMode,
-  isMobileView,
 }: ArticleContainerProps) {
   const categoryname =
     articlecontainerdata?.attributes?.category?.data?.attributes?.categoryname
@@ -68,12 +66,11 @@ export function ArticleContainer({
               ?.formats?.large?.url
           }
           alt="Article Image"
-          width={isHorizontalViewMode ? 120 : 40}
-          height={isHorizontalViewMode ? 90 : 20}
+          width={isHorizontalViewMode ? 160 : 600}
+          height={isHorizontalViewMode ? 90 : 100}
           style={{ objectFit: "cover" }}
-          className="contain h-auto w-full md:h-3/6 md:w-auto"
+          className="contain h-auto w-full md:h-3/6 md:w-auto  "
         />
-
         <div
           className={`flex-wrap text-sm md:text-2xl font-bold py-4 text-left  md:flex  overflow-hidden  ${
             isHorizontalViewMode ? "ml-4 truncate " : "text-ellipsis max-w-lg "

@@ -11,6 +11,7 @@ export async function FurtherReading({
   categorySlug: string
 }) {
   const { getArticlesByCategory } = useArticlesData()
+
   const viewMode = "HORIZONTAL" // Set the desired view mode here
 
   const { articlesData } = await getArticlesByCategory(
@@ -21,14 +22,12 @@ export async function FurtherReading({
   const paginationData = articlesData.meta
 
   return (
-    <div className="flex flex-col flex-wrap min-w-width h-min">
-      <div className="flex flex-col font-bold text-lg">Further Reading:</div>
-      {articlesData.data.map((articleData: any, index: number) => (
+    <div className="flex flex-col ">
+      <div className="flex flex-col font-bold  text-lg">Further Reading:</div>
+      {articlesData.data.map((articleData: any) => (
         <ArticleContainer
           articlecontainerdata={articleData}
           viewMode="HORIZONTAL"
-          key={index}
-          isMobileView={false}
         />
       ))}
       <div className="flex flex-col py-10">
