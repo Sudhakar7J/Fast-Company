@@ -1,11 +1,9 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { SignInButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs"
 import { Search } from "lucide-react"
 import { CldImage } from "next-cloudinary"
 
-import SignOutBtn from "./ClerkComponents/SignOutBtn"
 import { SideNav } from "./Navigation/SideNav"
 
 export function MainNav() {
