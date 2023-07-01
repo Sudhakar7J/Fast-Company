@@ -9,7 +9,7 @@ import SignOutBtn from "./ClerkComponents/SignOutBtn"
 import { SideNav } from "./Navigation/SideNav"
 
 export function MainNav() {
-  const { user } = useUser()
+  // const { user } = useUser()
 
   return (
     <>
@@ -29,7 +29,7 @@ export function MainNav() {
           style={{ objectFit: "cover" }}
         />
       </Link>
-      <div className="flex items-center px-4 mx-4 text-white">
+      {/* <div className="flex items-center px-4 mx-4 text-white">
         {user ? (
           <>
             <div className=" px-6">
@@ -39,7 +39,7 @@ export function MainNav() {
         ) : (
           <SignInButton />
         )}
-      </div>
+      </div> */}
     </>
   )
 }
