@@ -36,9 +36,10 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      <Head>
         <title>Daily Tamil Reads</title>
-      </head>
+        <meta property="og:title" content="Daily tamil reads" key="title" />
+      </Head>
       <ClerkProvider>
         <body
           className={cn(
