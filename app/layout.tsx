@@ -2,6 +2,7 @@
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import "@/styles/globals.css"
 import { Metadata } from "next"
+import Head from "next/head"
 import { ClerkProvider } from "@clerk/nextjs/app-beta"
 
 import { siteConfig } from "@/config/site"
@@ -34,26 +35,26 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <ClerkProvider>
-          <body
-            className={cn(
-              "min-h-screen bg-background font-sans antialiased overflow-x-hidden",
-              fontSans.variable
-            )}
-          >
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="min-w-screen relative flex min-h-screen flex-col">
-                <SiteHeader />
-                <div className="flex-1">{children}</div>
-              </div>
-              <TailwindIndicator />
-            </ThemeProvider>
-          </body>
-        </ClerkProvider>
-      </html>
-    </>
+    <html lang="en" suppressHydrationWarning>
+      <Head>
+        <title>Daily Tamil Reads</title>
+      </Head>
+      <ClerkProvider>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased overflow-x-hidden",
+            fontSans.variable
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="min-w-screen relative flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex-1">{children}</div>
+            </div>
+            <TailwindIndicator />
+          </ThemeProvider>
+        </body>
+      </ClerkProvider>
+    </html>
   )
 }

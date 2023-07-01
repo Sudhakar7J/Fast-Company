@@ -59,6 +59,7 @@ export function ArticleContainer({
           isHorizontalViewMode ? "flex-row" : "flex-col flex-wrap  px-6"
         }`}
         href={`/articles/${articlecontainerdata.attributes.slug}`}
+        passHref
       >
         <Image
           src={

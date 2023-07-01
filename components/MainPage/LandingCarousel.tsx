@@ -106,7 +106,7 @@ export function LandingCarousel({
             id,
             attributes: { title, category, description, slug, imageUrl },
           }) => (
-            <Link key={id} href={`articles/${slug}`}>
+            <Link key={id} href={`articles/${slug}`} passHref>
               <CarouselItem
                 {...{
                   id,

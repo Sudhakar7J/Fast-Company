@@ -19,7 +19,7 @@ export function MainNav() {
           <Search href="/" className="cursor-pointer" />
         </div>
       </div>
-      <Link href="/" className="flex flex-1 items-center">
+      <Link href="/" className="flex flex-1 items-center" passHref>
         <Image
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Fast_Company_logo.svg/120px-Fast_Company_logo.svg.png?20180515163340"
           alt="Logo"
