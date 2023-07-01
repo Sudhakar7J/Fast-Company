@@ -10,6 +10,7 @@ export const SideNavConfig = {
           name: "Login",
           isBold: true,
           hasSeparator: true,
+          icon: true,
         },
       ],
     },

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { playfairDisplay, ysabeaufont } from "@/fonts/fonts"
+import { montfont, playfairDisplay } from "@/fonts/fonts"
 
 interface ArticleContainerData {
   id: number
@@ -76,9 +76,7 @@ export function ArticleContainer({
           className={`flex-wrap text-sm md:text-2xl font-bold py-4 text-left  md:flex  overflow-hidden  ${
             isHorizontalViewMode ? "ml-4 truncate " : "text-ellipsis max-w-lg "
           }`}
-          style={
-            isHorizontalViewMode ? ysabeaufont.style : playfairDisplay.style
-          }
+          style={isHorizontalViewMode ? montfont.style : playfairDisplay.style}
         >
           {articlecontainerdata.attributes.title}
         </div>

@@ -39,7 +39,9 @@ export function SideNav() {
                   navItem.name === "Login" ? "font-bold" : ""
                 }`}
               >
-                {navItem.icon && <navItem.icon size={14} />}
+                {navItem.icon && typeof navItem.icon !== "boolean" && (
+                  <navItem.icon size={14} />
+                )}
                 {uppercaseNavItem(navItem).name}
               </div>
             ))}

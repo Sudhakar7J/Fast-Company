@@ -14,7 +14,14 @@ interface Article {
   id: number
   attributes: {
     title: string
-    category: string
+    category: {
+      data: {
+        attributes: {
+          categoryname: string
+          slug: string
+        }
+      }
+    }
     description: string
     slug: string
     imageUrl: {
