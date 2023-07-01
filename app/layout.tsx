@@ -34,9 +34,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <title>Daily Tamil Reads</title>
-      </head>
+      <title>Daily Tamil Reads</title>
 
       <body
         className={cn(
