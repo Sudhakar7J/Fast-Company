@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import React, { useState } from "react"
 import Link from "next/link"
 import { SideNavConfig } from "@/mockdataconfigs/SideNavConfig"
