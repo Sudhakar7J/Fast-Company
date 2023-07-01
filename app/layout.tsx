@@ -37,20 +37,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <title>Daily Tamil Reads</title>
       </head>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased overflow-x-hidden",
-          fontSans.variable
-        )}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="min-w-screen relative flex min-h-screen flex-col">
-            <SiteHeader />
-            <div className="flex-1">{children}</div>
-          </div>
-          <TailwindIndicator />
-        </ThemeProvider>
-      </body>
+      <ClerkProvider>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased overflow-x-hidden",
+            fontSans.variable
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="min-w-screen relative flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex-1">{children}</div>
+            </div>
+            <TailwindIndicator />
+          </ThemeProvider>
+        </body>
+      </ClerkProvider>
     </html>
   )
 }
