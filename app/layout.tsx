@@ -36,7 +36,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <title>Daily Tamil Reads</title>
       </head>
-      {/* <ClerkProvider> */}
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased overflow-x-hidden",
@@ -51,7 +50,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <TailwindIndicator />
         </ThemeProvider>
       </body>
-      {/* </ClerkProvider> */}
     </html>
   )
 }
