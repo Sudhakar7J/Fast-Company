@@ -1,15 +1,13 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { SignInButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs"
 import { Search } from "lucide-react"
 import { CldImage } from "next-cloudinary"
 
-import SignOutBtn from "./ClerkComponents/SignOutBtn"
 import { SideNav } from "./Navigation/SideNav"
 
 export function MainNav() {
-  const { user } = useUser()
+  // const { user } = useUser()
 
   return (
     <>
@@ -19,7 +17,7 @@ export function MainNav() {
           <Search href="/" className="cursor-pointer" />
         </div>
       </div>
-      <Link href="/" className="flex flex-1 items-center">
+      <Link href="/" className="flex flex-1 items-center" passHref>
         <Image
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Fast_Company_logo.svg/120px-Fast_Company_logo.svg.png?20180515163340"
           alt="Logo"
@@ -29,7 +27,7 @@ export function MainNav() {
           style={{ objectFit: "cover" }}
         />
       </Link>
-      <div className="flex items-center px-4 mx-4 text-white">
+      {/* <div className="flex items-center px-4 mx-4 text-white">
         {user ? (
           <>
             <div className=" px-6">
@@ -39,7 +37,7 @@ export function MainNav() {
         ) : (
           <SignInButton />
         )}
-      </div>
+      </div> */}
     </>
   )
 }

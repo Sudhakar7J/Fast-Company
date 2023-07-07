@@ -17,9 +17,13 @@ export default async function ArticlePage({
           <ArticlePreview articledata={data.data[0]} />
         </div>
         <div className="flex px-28">
-          <FurtherReading
-            categorySlug={data.data[0].attributes.category.data.attributes.slug}
-          />
+          <>
+            <FurtherReading
+              categorySlug={
+                data.data[0].attributes.category.data.attributes.slug
+              }
+            />
+          </>
         </div>
       </section>
     </main>

@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { UserButton } from "@clerk/nextjs"
 
 import useArticlesData from "@/hooks/useArticlesData"
 import { Separator } from "@/components/ui/separator"

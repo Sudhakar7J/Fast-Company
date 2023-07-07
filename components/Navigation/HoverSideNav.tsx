@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import React, { useState } from "react"
 import Link from "next/link"
 import { SideNavConfig } from "@/mockdataconfigs/SideNavConfig"
@@ -19,6 +18,7 @@ export function HoverSideNav() {
             <div key={navItem.name} className="flex items-center">
               <Link
                 href={`/categories/${navItem.name}`}
+                passHref
                 className={`group ml-2 flex text-sm ${
                   navItem.name === selectedNavItem
                     ? "cursor-pointer border-b-4 "

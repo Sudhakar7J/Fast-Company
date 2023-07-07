@@ -14,7 +14,14 @@ interface Article {
   id: number
   attributes: {
     title: string
-    category: string
+    category: {
+      data: {
+        attributes: {
+          categoryname: string
+          slug: string
+        }
+      }
+    }
     description: string
     slug: string
     imageUrl: {
@@ -106,7 +113,7 @@ export function LandingCarousel({
             id,
             attributes: { title, category, description, slug, imageUrl },
           }) => (
-            <Link key={id} href={`articles/${slug}`}>
+            <Link key={id} href={`articles/${slug}`} passHref>
               <CarouselItem
                 {...{
                   id,
